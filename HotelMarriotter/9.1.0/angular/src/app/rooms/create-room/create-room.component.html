@@ -1,0 +1,45 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ 'CreateNewStudent' | localize }}</h5>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="save()">
+        <div class="form-group">
+          <label for="nameRoom">{{ 'RoomName' | localize }}</label>
+          <input type="text" class="form-control" id="nameRoom" name="nameRoom"  [(ngModel)]="room.nameRoom"   required>
+        </div>
+        
+        <div class="form-group">
+            <label for="situation">{{ 'Situation' | localize }}</label>
+            <input type="text" class="form-control" id="situation" name="situation" [(ngModel)]="room.situation"  required>
+        </div>
+
+        <div class="form-group">
+          <label for="typeRoomId">{{ 'TypeRoom' | localize }}</label>
+          <select class="form-control" id="typeRoomId" name="typeRoomId" [(ngModel)]="room.typeRoomId" required>
+            <option *ngFor="let typeRoom of typeRooms" [value]="typeRoom.id">{{ typeRoom.nameTypeRoom }}</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="imageUrl">{{ 'ImageUrl' | localize }}</label>
+          <input type="text" class="form-control" id="imageUrl" name="imageUrl" [(ngModel)]="room.imageUrl" required>
+      </div>
+
+        <!-- <div class="form-group">
+          <label for="imageFile">{{ 'Image' | localize }}</label>
+          <input type="file" class="form-control-file" id="imageFile" name="imageFile" (change)="onFileSelected($event)">
+          <img *ngIf="imageUrl" [src]="imageUrl" class="img-fluid mt-2" alt="Selected Image">
+      </div> -->
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal() ">{{ 'Cancel' | localize }}</button>
+          <button type="submit" class="btn btn-primary" [disabled]="saving || !createForm.valid">{{ 'Save' | localize }}</button>
+        </div>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editStudentModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditService' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="serviceName">
+        {{ "ServiceName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="serviceName"
+          id="serviceName"
+          required
+          maxlength="32"
+          [(ngModel)]="service.serviceName"
+          #nameModel="ngModel"
+          #nameEl
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>   
+    </div>    
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="price">
+        {{ "Price" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="price"
+          class="form-control"
+          name="price"
+          id="price"
+          required
+          maxlength="256"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+          [(ngModel)]="service.price"
+          #emailModel="ngModel"
+          #emailEl
+        />
+        <abp-validation-summary
+          [control]="priceModel"
+          [controlEl]="pricelEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="imageUrl">
+        {{ "Image" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="imageUrl"
+          id="imageUrl"
+          required
+          [(ngModel)]="service.imageUrl"
+          #imageUrlModel="ngModel"
+          #imageUrlIdEl
+        />
+        <abp-validation-summary
+          [control]="imageUrlModel"
+          [controlEl]="imageUrlIdEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal() ">{{ 'Cancel' | localize }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="saving || !editForm.valid">{{ 'Save' | localize }}</button>
+  </div>
+</form>
+

@@ -1,0 +1,120 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #editStudentModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'EditStaff' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="name">
+        {{ "Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          required
+          maxlength="32"
+          [(ngModel)]="staff.name"
+          #nameModel="ngModel"
+          #nameEl
+        />
+        <abp-validation-summary
+          [control]="nameModel"
+          [controlEl]="nameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="gender">
+            {{ 'Gender' | localize }}
+        </label>
+        <div class="col-md-9">
+            <select class="form-control" id="gender" name="gender" required [(ngModel)]="staff.gender" #genderModel="ngModel" #genderEl>
+                <option value="male">{{ 'Male' | localize }}</option>
+                <option value="female">{{ 'Female' | localize }}</option>
+                <option value="other">{{ 'Other' | localize }}</option>
+            </select>
+            <abp-validation-summary [control]="genderModel" [controlEl]="genderEl"></abp-validation-summary>
+        </div>
+    </div>    
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="email">
+        {{ "Email" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          required
+          maxlength="256"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+          [(ngModel)]="staff.email"
+          #emailModel="ngModel"
+          #emailEl
+        />
+        <abp-validation-summary
+          [control]="emailModel"
+          [controlEl]="emailEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="departmentId">
+        {{ "DepartmentId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <!-- Thêm input cho departmentId -->
+        <input
+          type="number"
+          class="form-control"
+          name="phoneNumber"
+          id="phoneNumber"
+          required
+          [(ngModel)]="staff.phoneNumber"
+          #departmentIdModel="ngModel"
+          #departmentIdEl
+        />
+        <abp-validation-summary
+          [control]="departmentIdModel"
+          [controlEl]="departmentIdEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="subjectId">
+        {{ "SubjectId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <!-- Thêm input cho subjectId -->
+        <input
+          type="number"
+          class="form-control"
+          name="cccd"
+          id="cccd"
+          required
+          [(ngModel)]="staff.cccd"
+          #subjectIdModel="ngModel"
+          #subjectIdEl
+        />
+        <abp-validation-summary
+          [control]="subjectIdModel"
+          [controlEl]="subjectIdEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal() ">{{ 'Cancel' | localize }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="saving || !editForm.valid">{{ 'Save' | localize }}</button>
+  </div>
+</form>
+

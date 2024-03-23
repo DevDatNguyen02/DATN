@@ -1,0 +1,51 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ 'CreateNewStudent' | localize }}</h5>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="save()">
+        <div class="form-group">
+          <label for="name">{{ 'Name' | localize }}</label>
+          <input type="text" class="form-control" id="name" name="name"  [(ngModel)]="staff.name"   required>
+        </div>
+  
+        <div class="form-group">
+            <label for="gender">{{ 'Gender' | localize }}</label>
+            <select class="form-control" id="gender" name="gender" [(ngModel)]="staff.gender" required>
+                <option value="male">{{ 'Male' | localize }}</option>
+                <option value="female">{{ 'Female' | localize }}</option>
+                <option value="other">{{ 'Other' | localize }}</option>
+            </select>
+        </div>        
+        
+        <div class="form-group">
+            <label for="address">{{ 'Address' | localize }}</label>
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="staff.address"  required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">{{ 'Email' | localize }}</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="staff.email"  required>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">{{ 'PhoneNumber' | localize }}</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="staff.phoneNumber"  required>
+        </div>
+
+        <div class="form-group">
+            <label for="cccd">{{ 'CCCD' | localize }}</label>
+            <input type="text" class="form-control" id="cccd" name="cccd" [(ngModel)]="staff.cccd"  required>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal() ">{{ 'Cancel' | localize }}</button>
+          <button type="submit" class="btn btn-primary" [disabled]="saving || !createForm.valid">{{ 'Save' | localize }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
